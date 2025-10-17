@@ -40,7 +40,7 @@ else
 	sudo iptables -t nat -I PREROUTING -p tcp --dport 12800 -j DNAT --to 192.168.50.2:12800
 	sudo iptables -t nat -I PREROUTING -p tcp --dport 1337 -j DNAT --to 192.168.50.2:1337
 fi
-sudo iptables -t nat -A POSTROUTING -s 192.168.2.0/24 ! -d 192.168.2.0/24 -j MASQUERADE
+sudo iptables -t nat -A POSTROUTING -s 192.168.50.0/24 ! -d 192.168.50.0/24 -j MASQUERADE
 echo -e "\n\n\033[93m\nPPPoE Enabled \033[0m\n" | sudo tee /dev/tty1
 sudo pppoe-server -I $INTERFACE -T 60 -N 1 -C PPPWN -S PPPWN -L 192.168.50.1 -R 192.168.50.2 -F
 
